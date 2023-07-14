@@ -1,0 +1,25 @@
+body {
+  padding: 20px 0;
+}
+
+.col-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  color: transparent;
+  background-image: url("cardCover.jpg");
+  background-size: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transform: scale(-1, 1);
+  transition: transform .2s ease-in-out, background-position .4s ease-in-out, color .2s ease-in-out;
+}
+
+
+.selected {
+  color: black;
+  transform: scale(1, 1);
+  background-position: -72% 100%;
+}
