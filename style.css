@@ -23,3 +23,8 @@ body {
   transform: scale(1, 1);
   background-position: -72% 100%;
 }
+
+.matched {
+  background-color: green;
+  background-blend-mode: multiply;
+}

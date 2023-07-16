@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 const cards = [];
+let firstCard = null;
+let secondCard = null;
 
 
 function createBoard() {
@@ -50,8 +52,14 @@ function createCard () {
     let cardId = gameArray[cards.length]
     let card = {
         cardId,
-        cardMatch: false,
+        isMatched: false,
+        isOpen: false,
     }
+
+
+
+
+
 
     const gameCard = document.createElement('div')
     gameCard.classList.add('col-3')
@@ -60,16 +68,58 @@ function createCard () {
     gameCard.style.margin = '0 0 15px 0'
     gameCard.style.padding = '15px'
     gameCard.style.borderRadius = '10px'
-
     gameCard.textContent = card.cardId;
     gameCard.id = cardId;
 
+    function checkOpenedCards() {
+        for (let item of document.querySelectorAll('.col-3')) {
+            item.classList.remove('selected')
+        }
+    }
+
+    cards.push(card)
+
     gameCard.addEventListener('click', () => {
-        gameCard.classList.toggle('selected')
+        if (firstCard === null) {
+            firstCard = card;
+            gameCard.classList.add('selected')
+            console.log(gameCard)
+        } else {
+            if (secondCard === null) {
+                secondCard = card
+                gameCard.classList.add('selected')
+                console.log(secondCard)
+            }
+            if (firstCard.cardId === secondCard.cardId) {
+                let allCards = document.querySelectorAll('.col-3')
+
+
+                for (let item of allCards) {
+                    if (+item.id === +firstCard.cardId) {
+                        item.classList.add('matched')
+                        item.style.pointerEvents = 'none'
+                    }
+
+                }
+
+                firstCard.isMatched = true;
+                secondCard.isMatched = true;
+                setTimeout(checkOpenedCards, 1000);
+                firstCard = null;
+                secondCard = null;
+            } else {
+                firstCard = null;
+                secondCard = null;
+                setTimeout(checkOpenedCards, 1000);
+            }
+        }
 
     })
 
-    cards.push(card)
+
+
+
+
 
     return {
         gameCard,
