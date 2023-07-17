@@ -56,11 +56,6 @@ function createCard () {
         isOpen: false,
     }
 
-
-
-
-
-
     const gameCard = document.createElement('div')
     gameCard.classList.add('col-3')
     gameCard.textContent = 'Card'

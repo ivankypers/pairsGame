@@ -17,7 +17,6 @@ body {
   transition: transform .2s ease-in-out, background-position .4s ease-in-out, color .2s ease-in-out;
 }
 
-
 .selected {
   color: black;
   transform: scale(1, 1);
